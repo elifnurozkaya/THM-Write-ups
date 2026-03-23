@@ -44,27 +44,33 @@ The `/panel` page allows for file uploads, which can be exploited using a **PHP 
 
 <img width="332" height="91" alt="Screenshot from 2026-03-23 00-56-22" src="https://github.com/user-attachments/assets/037d5e26-db8e-49a0-8ae1-c12e8fe3d07c" />
 
-1.  **Preparation:** The shell script was downloaded from [PentestMonkey](https://pentestmonkey.net/tools/web-shells/php-reverse-shell).
+**Preparation:** The shell script was downloaded from [PentestMonkey](https://pentestmonkey.net/tools/web-shells/php-reverse-shell).
    
-3.  **Configuration:** The IP was updated to the local machine's IP and the port was set to **9999**.
-   ![WhatsApp Image 2026-03-23 at 02 14 55](https://github.com/user-attachments/assets/d68d92a2-5dfc-482a-b85b-78087f213466)
+**Configuration:** The IP was updated to the local machine's IP and the port was set to **9999**.
+ 
+![WhatsApp Image 2026-03-23 at 02 14 55](https://github.com/user-attachments/assets/d68d92a2-5dfc-482a-b85b-78087f213466)
+
 ![WhatsApp Image 2026-03-23 at 02 15 04](https://github.com/user-attachments/assets/5f9a6d87-513e-4f69-909d-2b9777577154)
 
-5.  **Bypass:** Since `.php` files were not accepted, the extension was changed to **.php5** to allow the upload.
-    ![WhatsApp Image 2026-03-23 at 02 15 04 (2)](https://github.com/user-attachments/assets/586b5eba-2363-4e3b-b2c5-d725f385a76a)
-    ![WhatsApp Image 2026-03-23 at 02 15 04 (3)](https://github.com/user-attachments/assets/5c4be927-74e4-46e2-8b47-f4e31c359a7b)
+**Bypass:** Since `.php` files were not accepted, the extension was changed to **.php5** to allow the upload.
+
+![WhatsApp Image 2026-03-23 at 02 15 04 (2)](https://github.com/user-attachments/assets/586b5eba-2363-4e3b-b2c5-d725f385a76a)
+    
+![WhatsApp Image 2026-03-23 at 02 15 04 (3)](https://github.com/user-attachments/assets/5c4be927-74e4-46e2-8b47-f4e31c359a7b)
 
 
-7.  **Listener:** A listener was started using **netcat**:
-    `nc –nlvp 9999`
-9.  **Execution:** The script was executed by navigating to the `/uploads` directory and clicking the uploaded file.
-    ![WhatsApp Image 2026-03-23 at 02 15 04 (4)](https://github.com/user-attachments/assets/67d8c583-64ef-411e-b0ff-b537023dc436)
+**Listener:** A listener was started using **netcat**:
+`nc –nlvp 9999`
+**Execution:** The script was executed by navigating to the `/uploads` directory and clicking the uploaded file.
+ 
+![WhatsApp Image 2026-03-23 at 02 15 04 (4)](https://github.com/user-attachments/assets/67d8c583-64ef-411e-b0ff-b537023dc436)
     
 ![WhatsApp Image 2026-03-23 at 02 15 05](https://github.com/user-attachments/assets/3ad99d94-8936-41ba-a3dc-42aee588198a)
 
 
 **User Flag:**
 After gaining a shell, the flag was found at `/var/www/user.txt`.
+
 ![userFlag](https://github.com/user-attachments/assets/982dd646-207c-45b0-90d5-42e634f15755)
 
 
@@ -73,6 +79,7 @@ After gaining a shell, the flag was found at `/var/www/user.txt`.
 ## **Task 4: Privilege Escalation**
 To elevate privileges to **root**, a search for files with **SUID** permissions was conducted:
 `find / -type f –user root –perm –4000 2> /dev/null`
+
 ![WhatsApp Image 2026-03-23 at 02 15 14](https://github.com/user-attachments/assets/dd250f92-71f9-46e8-97f1-44d29caa7b3b)
 
 **Exploitation:**
@@ -85,6 +92,7 @@ To elevate privileges to **root**, a search for files with **SUID** permissions 
 
 **Root Flag:**
 After gaining root access, the final flag was located at `/root/root.txt`.
+
 ![rootFlag](https://github.com/user-attachments/assets/62f25bb2-4e71-4c91-8a38-4ab7be52af47)
 
 And that was it, well done!
